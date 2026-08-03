@@ -1,10 +1,12 @@
+import { SITE, absoluteUrl } from "./site";
+
 /** Site origin for absolute schema URLs */
-export const SITE_ORIGIN = "https://cardrummyapp.com.pk";
+export const SITE_ORIGIN = SITE.origin;
 
 /** Schema.org Organization node reused as creator across ImageObjects */
 export const IMAGE_CREATOR = {
   "@type": "Organization",
-  name: "Card Rummy",
+  name: SITE.name,
   url: SITE_ORIGIN,
 } as const;
 
@@ -16,7 +18,7 @@ export const IMAGE_CREATOR = {
 export const imageObjectLicensing = {
   license: SITE_ORIGIN,
   creator: IMAGE_CREATOR,
-  acquireLicensePage: `${SITE_ORIGIN}/contact-us`,
-  copyrightNotice: "© Card Rummy. All rights reserved.",
-  creditText: "Card Rummy",
+  acquireLicensePage: absoluteUrl("/contact-us"),
+  copyrightNotice: `© ${SITE.name}. All rights reserved.`,
+  creditText: SITE.name,
 } as const;

@@ -1,6 +1,5 @@
 import { imageObjectLicensing } from "@/lib/schemaImageLicensing";
-
-const BASE = "https://cardrummyapp.com.pk";
+import { SITE, absoluteUrl } from "@/lib/site";
 
 function safeJsonLd(obj: object): string {
   return JSON.stringify(obj).replace(/</g, "\\u003c");
@@ -14,7 +13,6 @@ type BlogPostSchemaProps = {
   dateModified?: string;
   image?: string;
   breadcrumbOnly?: boolean;
-  /** Key summary or first 2-3 paragraphs for AI parsing and articleBody */
   articleBody?: string;
 };
 
@@ -24,17 +22,17 @@ export default function BlogPostSchema({
   slug,
   datePublished,
   dateModified,
-  image = `${BASE}/card-rummy-logo.webp`,
+  image = absoluteUrl(SITE.logo),
   breadcrumbOnly = false,
   articleBody,
 }: BlogPostSchemaProps) {
-  const url = `${BASE}/blog/${slug}`;
+  const url = absoluteUrl(`/blog/${slug}`);
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: BASE },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE}/blog` },
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE.origin },
+      { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
       { "@type": "ListItem", position: 3, name: title, item: url },
     ],
   };
@@ -46,15 +44,15 @@ export default function BlogPostSchema({
     description,
     url,
     image,
-    author: { "@type": "Organization", name: "Card Rummy", url: BASE },
+    author: { "@type": "Organization", name: SITE.name, url: SITE.origin },
     publisher: {
       "@type": "Organization",
-      name: "Card Rummy",
+      name: SITE.name,
       logo: {
         "@type": "ImageObject",
-        url: `${BASE}/card-rummy-logo.webp`,
+        url: absoluteUrl(SITE.logo),
         ...imageObjectLicensing,
-        creditText: "Card Rummy logo",
+        creditText: `${SITE.name} logo`,
       },
     },
     datePublished,

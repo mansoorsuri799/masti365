@@ -4,8 +4,10 @@
 
 :root {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 2, 6, 23;
-  --background-end-rgb: 2, 6, 23;
+  --background-start-rgb: 10, 5, 8;
+  --background-end-rgb: 10, 5, 8;
+  --brand-gold: #F0C000;
+  --brand-red: #FF1D1C;
 }
 
 body {

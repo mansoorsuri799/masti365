@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useMobileMenu } from './MobileMenuProvider';
+import DownloadButton from './DownloadButton';
+import { SITE } from '@/lib/site';
 
 type NavItem = {
   href: string;
@@ -37,7 +39,7 @@ const navSections: NavSection[] = [
         ),
       },
       {
-        href: '/download-card-rummy',
+        href: SITE.routes.download,
         label: 'Download',
         icon: (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -51,7 +53,7 @@ const navSections: NavSection[] = [
     title: 'GUIDES',
     items: [
       {
-        href: '/deposit-money-in-card-rummy',
+        href: SITE.routes.deposit,
         label: 'Deposit Guide',
         icon: (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -60,7 +62,7 @@ const navSections: NavSection[] = [
         ),
       },
       {
-        href: '/withdraw-money-from-card-rummy',
+        href: SITE.routes.withdraw,
         label: 'Withdraw Guide',
         icon: (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -69,7 +71,7 @@ const navSections: NavSection[] = [
         ),
       },
       {
-        href: '/card-rummy-for-pc',
+        href: SITE.routes.pc,
         label: 'PC Version',
         icon: (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -83,7 +85,7 @@ const navSections: NavSection[] = [
     title: 'INFO',
     items: [
       {
-        href: '/about-us',
+        href: SITE.routes.about,
         label: 'About Us',
         icon: (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -92,7 +94,7 @@ const navSections: NavSection[] = [
         ),
       },
       {
-        href: '/blog',
+        href: SITE.routes.blog,
         label: 'Blog',
         icon: (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -101,7 +103,7 @@ const navSections: NavSection[] = [
         ),
       },
       {
-        href: '/contact-us',
+        href: SITE.routes.contact,
         label: 'Contact Us',
         icon: (
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -121,14 +123,7 @@ function MenuButton({ onClick, isOpen }: { onClick: () => void; isOpen?: boolean
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        className="w-8 h-8"
-        aria-hidden="true"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-8 h-8" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
@@ -158,13 +153,8 @@ export default function MobileNavigation() {
     };
   }, [isOpen]);
 
-  const toggleMenu = () => {
-    startTransition(() => setIsOpen(!isOpen));
-  };
-
-  const closeMenu = () => {
-    startTransition(() => setIsOpen(false));
-  };
+  const toggleMenu = () => startTransition(() => setIsOpen(!isOpen));
+  const closeMenu = () => startTransition(() => setIsOpen(false));
 
   if (!mounted) {
     return (
@@ -179,44 +169,34 @@ export default function MobileNavigation() {
       <MenuButton onClick={toggleMenu} isOpen={isOpen} />
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-[#080A21]">
-          {/* Header */}
+        <div className="fixed inset-0 z-50 flex flex-col bg-[#0A0508]">
           <div className="flex justify-between items-center px-5 py-4 border-b border-gray-800/80">
             <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
               <div className="relative w-9 h-9 flex-shrink-0 rounded-lg overflow-hidden">
                 <Image
-                  src="/card-rummy.webp"
-                  alt="Card Rummy Logo"
+                  src={SITE.logo}
+                  alt={`${SITE.name} Logo`}
                   fill
                   sizes="36px"
                   className="object-contain"
                   priority
                 />
               </div>
-              <span className="text-white text-lg font-bold tracking-tight">Card Rummy</span>
+              <span className="text-white text-lg font-bold tracking-tight">{SITE.name}</span>
             </Link>
             <button
               onClick={closeMenu}
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-[#1a1f35] text-white hover:bg-[#252b45] transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-[#1a1012] text-white hover:bg-[#2a1818] transition-colors"
               aria-label="Close menu"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                className="w-5 h-5"
-                aria-hidden="true"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
-          {/* Nav sections */}
           <div className="relative flex-1 overflow-y-auto">
             <div className="absolute right-0 top-0 bottom-0 w-1 bg-[#0BA5E9]" aria-hidden="true" />
-
             <nav className="px-5 py-2 pb-6">
               {navSections.map((section) => (
                 <div key={section.title} className="mb-2">
@@ -227,27 +207,21 @@ export default function MobileNavigation() {
                     {section.items.map((item) => {
                       const active = isActive(item.href);
                       return (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          onClick={closeMenu}
-                          className={`flex items-center gap-4 px-1 py-3.5 transition-colors group ${
-                            active
-                              ? 'text-accent'
-                              : 'text-white hover:text-accent'
-                          }`}
-                        >
-                          <span className={`transition-colors flex-shrink-0 ${
-                            active
-                              ? 'text-accent'
-                              : 'text-gray-400 group-hover:text-accent'
-                          }`}>
-                            {item.icon}
-                          </span>
-                          <span className="flex-1 text-[15px] font-medium">{item.label}</span>
-                          <ChevronRight />
-                        </Link>
-                      </li>
+                        <li key={item.href}>
+                          <Link
+                            href={item.href}
+                            onClick={closeMenu}
+                            className={`flex items-center gap-4 px-1 py-3.5 transition-colors group ${
+                              active ? 'text-accent' : 'text-white hover:text-accent'
+                            }`}
+                          >
+                            <span className={`transition-colors flex-shrink-0 ${active ? 'text-accent' : 'text-gray-400 group-hover:text-accent'}`}>
+                              {item.icon}
+                            </span>
+                            <span className="flex-1 text-[15px] font-medium">{item.label}</span>
+                            <ChevronRight />
+                          </Link>
+                        </li>
                       );
                     })}
                   </ul>
@@ -256,25 +230,10 @@ export default function MobileNavigation() {
             </nav>
           </div>
 
-          {/* Footer CTA */}
-          <div className="px-5 pt-4 pb-8 border-t border-gray-800/80 flex flex-col items-center">
-            <a
-              href="https://pkcardrummy.com/?from_gameid=6276686&channelCode=6191689"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeMenu}
-              aria-label="Download Card Rummy app for Android"
-              className="download-btn inline-flex items-center px-8 py-4 text-white font-semibold text-lg rounded-full border-2 border-[#0BA5E9] bg-transparent hover:bg-[#0BA5E9]/10 transition-all group"
-            >
-              <span>DOWNLOAD NOW</span>
-              <div className="download-icon ml-3 bg-[#f97316] rounded-full p-2 group-hover:scale-110 transition-transform">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-              </div>
-            </a>
+          <div className="px-5 pt-4 pb-8 border-t border-gray-800/80 flex flex-col items-center" onClick={closeMenu}>
+            <DownloadButton size="sm" />
             <p className="text-center text-gray-500 text-xs mt-3">
-              49MB · Android 5.0+ · V1.231 (2026 Update)
+              {SITE.fileSize} · {SITE.requiredOs} · V{SITE.version} (2026 Update)
             </p>
           </div>
         </div>

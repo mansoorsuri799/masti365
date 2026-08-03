@@ -1,11 +1,11 @@
 {
-  "name": "Card Rummy",
-  "short_name": "Card Rummy",
-  "description": "Pakistan's premier card gaming platform offering Teen Patti, Rummy, Dragon vs Tiger and more. Earn real cash rewards!",
+  "name": "Masti 365",
+  "short_name": "Masti365",
+  "description": "Download Masti 365 APK for Pakistan. Slots, cards, crash games with JazzCash & EasyPaisa withdrawals.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#06091F",
-  "theme_color": "#06091F",
+  "background_color": "#0A0508",
+  "theme_color": "#0A0508",
   "icons": [
     {
       "src": "/favicon.ico",
@@ -13,16 +13,22 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/card-rummy-logo.webp",
-      "sizes": "192x192 512x512",
-      "type": "image/webp",
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/card-rummy.webp",
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/masti-365.webp",
       "sizes": "512x512",
       "type": "image/webp",
       "purpose": "any"
     }
   ]
-} 
+}
