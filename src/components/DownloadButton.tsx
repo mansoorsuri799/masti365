@@ -43,12 +43,12 @@ export default function DownloadButton({
       {...(isExternal
         ? { target: "_blank", rel: "noopener noreferrer sponsored" }
         : {})}
-      className={`download-btn relative inline-flex items-center justify-center shrink-0 whitespace-nowrap ${s.padding} text-white font-semibold tracking-wide rounded-full border-2 border-[#0ea5e9] hover:bg-[#0ea5e9]/10 transition-all group ${className}`}
+      className={`download-btn relative inline-flex items-center justify-center shrink-0 whitespace-nowrap ${s.padding} bg-accent hover:bg-[#e0b000] text-primary font-semibold tracking-wide rounded-full shadow-md hover:shadow-lg transition-all group ${className}`}
       aria-label={`Download ${SITE.name} app for Android`}
     >
       <span>{label}</span>
       <div
-        className={`download-icon ${s.gap} bg-[#FF1D1C] rounded-full ${s.iconPad} group-hover:scale-110 transition-transform flex items-center justify-center`}
+        className={`download-icon ${s.gap} bg-primary text-accent rounded-full ${s.iconPad} group-hover:scale-110 transition-transform flex items-center justify-center`}
       >
         <svg
           className={s.iconSize === "w-4.5 h-4.5" ? "w-[18px] h-[18px]" : s.iconSize}
